@@ -12,7 +12,12 @@ def loop_ranger(start, stop=None, step=1):
     The look up the docs for range(), you can answer this with just the range 
     function, but we'd like you to do it the long way, probably using a loop.
     """
-    return None
+
+    number_list = []
+    while start < stop:
+        number_list.append(start)
+        start += step
+    return number_list
 
 
 def lone_ranger(start, stop, step):
@@ -20,8 +25,12 @@ def lone_ranger(start, stop, step):
 
     Look up the docs for range() and wrap it in a 1:1 way
     """
-    return None
-
+    number_list = []
+    while start < stop:
+        number_list.append(start)
+        start += step
+   
+    return number_list
 
 def two_step_ranger(start, stop):
     """Make a range that steps by 2.
@@ -29,7 +38,14 @@ def two_step_ranger(start, stop):
     Sometimes you want to hide complexity.
     Make a range function that always has a step size of 2
     """
-    return None
+    number_list = []
+    step = 2
+    while start < stop:
+        number_list.append(start)
+        start += step 
+   
+    return number_list
+    
 
 
 def stubborn_asker(low, high):
@@ -40,7 +56,22 @@ def stubborn_asker(low, high):
 
     Look up the docs for input
     """
-    return None
+    
+    print("Welcome this guessing game")
+    lower_bound = int(low)
+    higher_bound = int(high)
+    bounded = False
+
+    while not bounded:
+        guess = int(input(The number: "))
+        if guess < lower_bound:
+            print(Guess higher try again)
+        else guess> higher_bound:
+            print(Guess lower try again)
+            else:
+                bounded = True
+                print(You got it)
+     return guess              
 
 
 def not_number_rejector(message):
@@ -50,7 +81,24 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    return None
+    condition = False
+    while condition == False:
+        number = str(input(message)
+        if number.isdigit():
+            print("Well Done you types a number!")
+            return(int(number))
+        else:
+            print("try again!")
+    return message
+
+    while True:
+        value = input(message)
+        try:
+            value = int(value)
+            return value
+        except:
+            value = input("Not the number, try again")
+
 
 
 def super_asker(low, high):
@@ -61,8 +109,24 @@ def super_asker(low, high):
     Try to call at least one of the other functions to minimise the
     amount of code.
     """
-    return None
+    
+    print("Welcome the guessing game")
+    lower_bounded = int(low)
+    higher_bounded = int(high)
+    bounded = False
 
+    while not bounded:
+        guess = str(input("Guess A number: "))
+        if guess.isgit():
+            if int(guess) < lower_bounded:
+                print(Guess higher)
+             elif int(guess > higher_bounded):
+                 print(Guess lower)
+             else:
+                 bounded = True
+                 print("Well done") 
+        else print("Please try again")
+     return guess
 
 if __name__ == "__main__":
     # this section does a quick test on your results and prints them nicely.
