@@ -5,6 +5,21 @@ Steps on the way to making your own guessing game.
 
 import random
 
+def not_number_rejector(message):
+    """Ask for a number repeatedly until actually given one.
+
+    Ask for a number, and if the response is actually NOT a number 
+    (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
+    When you do get a number, return it.
+    """
+    value = message
+    while True:
+      try:
+        value = int(value)
+        return value
+      except:
+        value = input("Not a number, try again: ")
+
 
 def advancedGuessingGame():
     """Play a guessing game with a user.
@@ -27,64 +42,23 @@ def advancedGuessingGame():
     """
 
     print("Welcome to the guessing game")
-    print("A number between _ and _ ?")
-    
-    lowerBound = input("Enter an lower bound: ")
-    try:
-      lowerBound = int(lowerBound)
-    except ValueError:
-      IntegerTest0 = False
-      while IntegerTest0 == False:
-        try:
-          lowerBound = int(lowerBound)
-          IntegerTest0 = True
-        except ValueError:
-          lowerBound = input("Enter an lower bound: ")
-     upperBound = input("Enter an upper bound: ")
-     try:
-      upperBound = int(upperBound)
-     except ValueError:
-       IntegerTest = False
-       while IntegerTest == False:
-         try:
-           upperBound = int(upperBound)
-           IntegerTest = True
-         except ValueError:
-           upperBound = input("Enter an upper bound: ")
+    lower_Bound = not_number_rejector(input("Enter an lower bound: "))
+    upper_Bound = not_number_rejector(input("Enter an upper bound: "))
+    print("Choose a number between %s and %s ?" %(lower_Bound, upper_Bound))
+    import random
+    actualNumber = random.randint(lower_Bound, upper_Bound)
+    guessed = False
 
-     lowerBound = int(lowerBound)
-     upperBound = int(upperBound)
-     print("OK then, a number between {a} and {b} ?".format(a = lowerBound, b = upperBound))
-
-     actualNumber = random.randint(lowerBound, upperBound)
-
-     guessed = False
-
-     while not guessed:
-         guessedNumber = input("Guess a number: ")
-         try:
-           guessedNumber = int(guessedNumber)
-         except ValueError:
-           IntegerTest1 = False
-           while IntegerTest1 == False:
-             try:
-               guessedNumber = int(guessedNumber)
-               IntegerTest1 = True
-             except ValueError:
-               guessedNumber = input("Guess a number: ")
- 
-         if guessedNumber < lowerBound or guessedNumber > upperBound:
-           print("Guess a number in the range, fool.")
-         else:
-           print("You guessed {},".format(guessedNumber),)
-           if guessedNumber == actualNumber:
-             print("You got it!! It was {}".format(actualNumber))
-             guessed = True
-           elif guessedNumber < actualNumber:
-              print("Too small, try again :'(")
-           else:
-             print("Too big, try again :'(")
-
+    while not guessed:
+      guessedNumber = input("guessing a numebr")
+      print("You guessed{},".format(guessedNumber))
+      if guessedNumber == actualNumber:
+        print("You got it! It was {}".format(actualNumber))
+        guessed = True
+      elif guessedNumber < actualNumber:
+        print("Too small, try again")
+      else:
+        print("Too big, try again")
     return "You got it!"
     # the tests are looking for the exact string "You got it!". Don't modify that!
 

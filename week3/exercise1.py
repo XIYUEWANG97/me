@@ -29,7 +29,6 @@ def lone_ranger(start, stop, step):
     while start < stop:
         number_list.append(start)
         start += step
-   
     return number_list
 
 def two_step_ranger(start, stop):
@@ -39,10 +38,9 @@ def two_step_ranger(start, stop):
     Make a range function that always has a step size of 2
     """
     number_list = []
-    step = 2
     while start < stop:
         number_list.append(start)
-        start += step 
+        start += 2 
    
     return number_list
     
@@ -63,15 +61,15 @@ def stubborn_asker(low, high):
     bounded = False
 
     while not bounded:
-        guess = int(input(The number: "))
-        if guess < lower_bound:
-            print(Guess higher try again)
-        else guess> higher_bound:
-            print(Guess lower try again)
-            else:
-                bounded = True
-                print(You got it)
-     return guess              
+        guess = int(input("The number: "))
+        if guess< lower_bound:
+            print("Guess higher try again")
+        elif guess > higher_bound:
+            print("Guess lower try again")
+        else:
+            bounded = True
+            print("You got it")
+    return guess              
 
 
 def not_number_rejector(message):
@@ -82,11 +80,11 @@ def not_number_rejector(message):
     When you do get a number, return it.
     """
     condition = False
-    while condition == False:
-        number = str(input(message)
+    while not condition:
+        number = str(input(message))
         if number.isdigit():
             print("Well Done you types a number!")
-            return(int(number))
+            return int(number)
         else:
             print("try again!")
     return message
@@ -117,16 +115,17 @@ def super_asker(low, high):
 
     while not bounded:
         guess = str(input("Guess A number: "))
-        if guess.isgit():
+        if guess.isdigit():
             if int(guess) < lower_bounded:
-                print(Guess higher)
-             elif int(guess > higher_bounded):
-                 print(Guess lower)
-             else:
+                print("Guess higher")
+            elif int(guess) > higher_bounded:
+                 print("Guess lower")
+            else:
                  bounded = True
                  print("Well done") 
-        else print("Please try again")
-     return guess
+        else:
+            print("Please try again")
+    return guess
 
 if __name__ == "__main__":
     # this section does a quick test on your results and prints them nicely.
