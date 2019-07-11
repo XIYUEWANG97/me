@@ -34,10 +34,11 @@ def get_some_details():
          dictionaries.
     """
 
-    json_data = open(LOCAL + "/lazyduck.json").read()
+    json_data = open(LOCAL + "/lazyduck.json").read() # open and read file
 
-    data = json.loads(json_data)
-    lastName = data['results'][0]['name']['last']
+    data = json.loads(json_data) # convert from json string to a dictioinary
+    # get last name
+    lastName = data['results'][0]['name']['last'] 
     password = data['results'][0]['login']['password']
     postcode = int(data['results'][0]['location']['postcode'])
     ID = int(data['results'][0]['id']['value'])
@@ -87,7 +88,7 @@ def wordy_pyramid():
     i = 3
     
     while i <= 19:
-        url_param = "http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&" +"minLength=" + str(i)+"&maxLength="+str(i)+"&limit=1" 
+        url_param = "http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&" +"minLength=" + str(i)+"&maxLength="+str(i)+"&limit=25" 
         url = str(url_param)
         GetWord = requests.get(url)
         while GetWord.status_code is not 200:
@@ -100,7 +101,7 @@ def wordy_pyramid():
 
     i = 20
     while i >= 4:
-        url_param = "http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&" +"minLength=" + str(i)+"&maxLength="+str(i)+"&limit=1" 
+        url_param = "http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&" +"minLength=" + str(i)+"&maxLength="+str(i)+"&limit=20" 
         url = str(url_param)
         GetWord = requests.get(url)
         while GetWord.status_code is not 200:
@@ -132,6 +133,15 @@ def pokedex(low=1, high=5):
          variable and then future access will be easier.
     """
     template = "https://pokeapi.co/api/v2/pokemon/{id}"
+
+    for pokemon in range(low, high):
+        url = template.format(id=5)
+        r = requests.get(url)
+    if r.status_code is 200:
+        the_json = json.loads(r.text)
+        height = the_json["height"]
+        # pause here
+    
     n = low
     i = 0
     PokeDict = {"name": [], "weight": [], "height": []}
@@ -170,14 +180,14 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    file_path = "me/week4/Trispokedovetiles(laser).gcode"
+    file_path = "week4/Trispokedovetiles(laser).gcode"
     Tris_file = open(file_path, 'r')
     read_file = Tris_file.read()
     count_num = read_file.count('M10 P1')
     print(read_file)
     Tris_file.close
 
-    file_path2 = "me/week4/lasers.pew"
+    file_path2 = "week4/lasers.pew"
     laser_file = open(file_path2, 'w')
     laser_file.write(str(count_num))
     laser_file.close
