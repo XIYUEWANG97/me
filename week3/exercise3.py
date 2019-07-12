@@ -47,19 +47,18 @@ def advancedGuessingGame():
     print("Choose a number between %s and %s ?" %(lower_Bound, upper_Bound))
     import random
     actualNumber = random.randint(lower_Bound, upper_Bound)
-    guessed = False
 
-    while not guessed:
-      guessedNumber = input("guessing a numebr")
+    while True:
+      guessedNumber = not_number_rejector(input("guessing a numebr"))
       print("You guessed{},".format(guessedNumber))
       if guessedNumber == actualNumber:
         print("You got it! It was {}".format(actualNumber))
-        guessed = True
+        return "You got it!"
       elif guessedNumber < actualNumber:
         print("Too small, try again")
       else:
         print("Too big, try again")
-    return "You got it!"
+    
     # the tests are looking for the exact string "You got it!". Don't modify that!
 
 

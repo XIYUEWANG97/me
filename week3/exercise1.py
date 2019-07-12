@@ -79,23 +79,12 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    condition = False
-    while not condition:
-        number = str(input(message))
-        if number.isdigit():
-            print("Well Done you types a number!")
-            return int(number)
-        else:
-            print("try again!")
-    return message
-
     while True:
-        value = input(message)
         try:
-            value = int(value)
+            value = int(input(message))
             return value
         except:
-            value = input("Not the number, try again")
+            print("Not the number, try again")
 
 
 
