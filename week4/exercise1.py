@@ -48,6 +48,7 @@ def get_some_details():
 
 
 
+
 def wordy_pyramid():
     """Make a pyramid out of real words.
 
